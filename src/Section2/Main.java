@@ -1,39 +1,47 @@
 package Section2;
 
-
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
-    int inputNumber;
-    Scanner scanner = new Scanner(System.in);
-    int answer;
-    int previewAnswer = 0;
-    void input(){
-        inputNumber=scanner.nextInt();
-        if(inputNumber<=1 || inputNumber>200000){
-            throw new RuntimeException("잘못된 범위 값입니다.");
-        }
+
+
+    int input(){
+        Scanner scanner = new Scanner(System.in);
+        int num = scanner.nextInt();
+        return num;
     }
 
-    void solution(){
-        answer=0;
-        for(int k=2;k<inputNumber;k++) {
-            previewAnswer=answer;
-            for (int i = 2; i < k; i++) {
-                if (k % i == 0) {
-                    if (previewAnswer == answer) {
-                        answer++;
-                    }
+    int logic(int num){
+        int count = 0;
+        boolean[] isPrime = new boolean[num+1];
+        Arrays.fill(isPrime, true);
+        isPrime[0] =isPrime[1]= false;
+
+        for(int i=2; i*i<num; i++){
+            if(isPrime[i]){
+                for(int j=i*i; j<=num; j+=i){
+                    isPrime[j] = false;
                 }
             }
         }
+
+        for(int i=2; i<num; i++){
+            if(isPrime[i]){
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    void run(){
+        int num = input();
+        int solve = logic(num);
+        System.out.println(solve);
     }
 
     public static void main(String[] args) {
         Main main = new Main();
-        main.input();
+        main.run();
     }
 }
-/*
-https://velog.io/@thsdnjst/Java-%EC%97%90%EB%9D%BC%ED%86%A0%EC%8A%A4%ED%85%8C%EB%84%A4%EC%8A%A4%EC%9D%98-%EC%B2%B4
- */
