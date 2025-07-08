@@ -2,7 +2,7 @@ package Section2;
 
 import java.util.*;
 
-public class Main {
+public class Archa {
 
 
     int input(){
@@ -41,7 +41,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Main main = new Main();
-        main.run();
+        Archa archa = new Archa();
+        archa.run();
     }
 }
